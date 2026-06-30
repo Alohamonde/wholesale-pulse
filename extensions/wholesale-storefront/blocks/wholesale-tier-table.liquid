@@ -1,0 +1,27 @@
+<div
+  id="wholesale-tier-table-{{ block.id }}"
+  data-wholesale-tier-table
+  data-product-id="{{ product.id }}"
+  data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+  data-collection-ids='[{% for collection in product.collections %}"{{ collection.id }}"{% unless forloop.last %},{% endunless %}{% endfor %}]'
+  data-customer-tags='[{% if customer %}{% for tag in customer.tags %}"{{ tag | escape }}"{% unless forloop.last %},{% endunless %}{% endfor %}{% endif %}]'
+  data-logged-in="{% if customer %}true{% else %}false{% endif %}"
+  data-heading="{{ block.settings.heading | escape }}"
+></div>
+
+{% schema %}
+{
+  "name": "Wholesale tier table",
+  "target": "section",
+  "stylesheet": "wholesale-pulse.css",
+  "javascript": "wholesale-pulse.js",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "批发阶梯价"
+    }
+  ]
+}
+{% endschema %}

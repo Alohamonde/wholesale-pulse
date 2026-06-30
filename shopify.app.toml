@@ -1,0 +1,45 @@
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "Wholesale Pulse"
+client_id = ""
+application_url = "https://shopify.dev/apps/default-app-home"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+include_config_on_deploy = true
+
+[access_scopes]
+scopes = "read_products,write_products,read_customers,write_discounts,read_discounts,read_orders,write_validations,read_validations"
+
+[shop.metafields.app.b2b_pricing]
+type = "json"
+name = "B2B Pricing Config"
+description = "Wholesale price rules, MOQ rules, and storefront settings"
+
+  [shop.metafields.app.b2b_pricing.access]
+  admin = "merchant_read_write"
+  storefront = "public_read"
+
+[app_proxy]
+url = "/apps/wholesale-pulse"
+subpath = "wholesale-pulse"
+prefix = "apps"
+
+[webhooks]
+api_version = "2026-04"
+
+  [[webhooks.subscriptions]]
+  topics = ["app/uninstalled"]
+  uri = "/webhooks/app/uninstalled"
+
+  [[webhooks.subscriptions]]
+  topics = ["app/scopes_update"]
+  uri = "/webhooks/app/scopes_update"
+
+  [[webhooks.subscriptions]]
+  topics = ["orders/paid"]
+  uri = "/webhooks/orders/paid"
+
+[auth]
+redirect_urls = ["https://shopify.dev/apps/default-app-home/api/auth"]

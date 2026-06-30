@@ -1,0 +1,13 @@
+<div
+  data-wholesale-cart-hint
+  data-customer-tags='[{% if customer %}{% for tag in customer.tags %}"{{ tag | escape }}"{% unless forloop.last %},{% endunless %}{% endfor %}{% endif %}]'
+></div>
+
+{% schema %}
+{
+  "name": "Wholesale cart MOQ hint",
+  "target": "body",
+  "stylesheet": "wholesale-pulse.css",
+  "javascript": "wholesale-pulse.js"
+}
+{% endschema %}

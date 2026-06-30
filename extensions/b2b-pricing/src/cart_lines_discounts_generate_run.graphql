@@ -1,0 +1,46 @@
+query CartInput {
+  cart {
+    buyerIdentity {
+      isAuthenticated
+      customer {
+        tagWholesale: hasAnyTag(tags: ["wholesale"])
+        tagB2b: hasAnyTag(tags: ["b2b"])
+        tagB2bVip: hasAnyTag(tags: ["b2b-vip"])
+        tagReseller: hasAnyTag(tags: ["reseller"])
+        tagDistributor: hasAnyTag(tags: ["distributor"])
+        tagTrade: hasAnyTag(tags: ["trade"])
+        tagVip: hasAnyTag(tags: ["vip"])
+        tagBulk: hasAnyTag(tags: ["bulk"])
+      }
+    }
+    lines {
+      id
+      quantity
+      cost {
+        amountPerQuantity {
+          amount
+        }
+      }
+      merchandise {
+        __typename
+        ... on ProductVariant {
+          id
+          product {
+            id
+            inCollections {
+              collectionId
+            }
+          }
+        }
+      }
+    }
+  }
+  discount {
+    discountClasses
+  }
+  shop {
+    metafield(namespace: "$app:b2b_pricing", key: "config") {
+      jsonValue
+    }
+  }
+}

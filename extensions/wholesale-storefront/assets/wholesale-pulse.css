@@ -1,0 +1,54 @@
+.wholesale-tier-table {
+  margin: 1rem 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 0.95rem;
+}
+
+.wholesale-tier-table__heading {
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.wholesale-tier-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.wholesale-tier-table th,
+.wholesale-tier-table td {
+  padding: 0.65rem 1rem;
+  border-top: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.wholesale-tier-table__guest {
+  padding: 1rem;
+  background: #f9fafb;
+}
+
+.wholesale-tier-table__guest a {
+  color: inherit;
+  font-weight: 600;
+}
+
+.wholesale-cart-hint {
+  display: none;
+  margin: 0.75rem 0;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 0.9rem;
+}
+
+.wholesale-cart-hint.is-visible {
+  display: block;
+}
+
+.wholesale-cart-hint.is-error {
+  background: #fee2e2;
+  color: #991b1b;
+}

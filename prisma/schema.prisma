@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.sqlite"
+}
+
+model Session {
+  id                  String    @id
+  shop                String
+  state               String
+  isOnline            Boolean   @default(false)
+  scope               String?
+  expires             DateTime?
+  accessToken         String
+  userId              BigInt?
+  firstName           String?
+  lastName            String?
+  email               String?
+  accountOwner        Boolean   @default(false)
+  locale              String?
+  collaborator        Boolean?  @default(false)
+  emailVerified       Boolean?  @default(false)
+  refreshToken        String?
+  refreshTokenExpires DateTime?
+}
+
+model ShopSettings {
+  id            String   @id @default(cuid())
+  shop          String   @unique
+  enabled       Boolean  @default(true)
+  guestMessage  String   @default("登录查看批发价")
+  showTierTable Boolean  @default(true)
+  tableHeaderBg String   @default("#111827")
+  tableAccent   String   @default("#16a34a")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model PriceRule {
+  id           String      @id @default(cuid())
+  shop         String
+  enabled      Boolean     @default(true)
+  name         String
+  customerTags String      @default("[]")
+  scopeType    String      @default("product")
+  scopeIds     String      @default("[]")
+  scopeTitles  String      @default("[]")
+  discountMode String      @default("percent")
+  priority     Int         @default(0)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  tiers        PriceTier[]
+
+  @@index([shop])
+}
+
+model PriceTier {
+  id     String    @id @default(cuid())
+  ruleId String
+  minQty Int
+  value  Float
+  rule   PriceRule @relation(fields: [ruleId], references: [id], onDelete: Cascade)
+
+  @@index([ruleId])
+}
+
+model MoqRule {
+  id           String   @id @default(cuid())
+  shop         String
+  enabled      Boolean  @default(true)
+  name         String   @default("MOQ Rule")
+  customerTags String   @default("[]")
+  scopeType    String   @default("product")
+  scopeIds     String   @default("[]")
+  scopeTitles  String   @default("[]")
+  minQty       Int
+  message      String   @default("未达最低起订量")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([shop])
+}
+
+model PricingEvent {
+  id        String   @id @default(cuid())
+  shop      String
+  eventType String
+  ruleId    String?
+  createdAt DateTime @default(now())
+
+  @@index([shop, eventType])
+}

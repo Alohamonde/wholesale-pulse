@@ -1,0 +1,16 @@
+api_version = "2026-04"
+
+[[extensions]]
+name = "B2B MOQ"
+handle = "b2b-moq"
+type = "function"
+description = "Enforce minimum order quantity for B2B customers at checkout"
+
+  [[extensions.targeting]]
+  target = "cart.validations.generate.run"
+  input_query = "src/cart_validations_generate_run.graphql"
+  export = "cart-validations-generate-run"
+
+  [extensions.build]
+  command = ""
+  path = "dist/function.wasm"

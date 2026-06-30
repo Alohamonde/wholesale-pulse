@@ -1,0 +1,15 @@
+{
+  "wholesale": {
+    "tier_table": {
+      "title": "Wholesale tier table",
+      "settings": {
+        "heading": {
+          "label": "Heading"
+        }
+      }
+    },
+    "cart_hint": {
+      "name": "Wholesale cart MOQ hint"
+    }
+  }
+}
