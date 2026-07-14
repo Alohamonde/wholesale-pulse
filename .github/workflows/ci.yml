@@ -9,7 +9,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # Latest Node 22.x / 24.x. Avoid pinning 22.12 (transitive deps need >=22.13).
         version: [22, 24]
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
@@ -19,4 +18,4 @@ jobs:
       - name: Install
         env:
           NPM_CONFIG_ENGINE_STRICT: "false"
-        run: npm install --no-fund --no-audit
+        run: npm install --legacy-peer-deps --no-fund --no-audit
