@@ -1,10 +1,20 @@
 # Wholesale Pulse
 
-B2B 智能定价 Shopify App：**客户标签阶梯批发价**、**MOQ 结账拦截**、**商品页阶梯价表**。基于 Remix + 双 Shopify Functions + Theme App Extension，与 Omni Store Toolkit、Checkout Pulse、Cart Milestone、Gift Auto 形成差异化矩阵。
+B2B 智能定价 Shopify App：**客户标签阶梯批发价**、**MOQ 结账拦截**、**商品页阶梯价表**。
+
+独立产品：专注批发与起订量。基于 Remix + 双 Shopify Functions + Theme App Extension。
 
 ![Shopify](https://img.shields.io/badge/Shopify-App-7AB55C?logo=shopify&logoColor=white)
 ![Remix](https://img.shields.io/badge/Remix-000?logo=remix&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+
+## 产品边界
+
+| 覆盖 | 不覆盖 |
+|------|--------|
+| 标签阶梯行级价、MOQ Validation、批发价表与购物车预警 | B2C 购前弹窗、买赠、会员积分、预售、内容/售后中台 |
+
+与 [Conversion Pulse](https://github.com/Alohamonde/conversion-pulse)、[Loyalty Pulse](https://github.com/Alohamonde/loyalty-pulse)、[Preorder Pulse](https://github.com/Alohamonde/preorder-pulse)、[Commerce Ops](https://github.com/Alohamonde/commerce-ops) **互不隶属**；可同店可选搭配，无安装依赖。
 
 ## 功能
 
@@ -15,16 +25,6 @@ B2B 智能定价 Shopify App：**客户标签阶梯批发价**、**MOQ 结账拦
 | **阶梯价表** | Theme Extension 在商品页展示批发阶梯价，游客看到登录提示 |
 | **购物车预警** | Theme Embed 监听购物车变化，提前提示 MOQ 不足 |
 | **B2B 归因** | `orders/paid` Webhook + 店面事件追踪 KPI |
-
-## 与现有项目的差异化
-
-| 项目 | 场景 | 核心技术 |
-|------|------|----------|
-| Omni Store Toolkit | 购前店面 | 弹窗、关联销售 |
-| Gift Auto | 购中赠品 | 买 X 送 Y、赠品行归零 |
-| Cart Milestone | 购物车凑单 | 满额订单折扣 |
-| Checkout Pulse | 购后追加销售 | Checkout UI Extension |
-| **Wholesale Pulse** | **B2B 批发定价** | **标签匹配 + 行级折扣 + MOQ Validation** |
 
 ## 技术栈
 
@@ -47,6 +47,7 @@ B2B 智能定价 Shopify App：**客户标签阶梯批发价**、**MOQ 结账拦
 ### 安装运行
 
 ```bash
+git clone https://github.com/Alohamonde/wholesale-pulse.git
 cd wholesale-pulse
 cp .env.example .env
 npm install
@@ -77,6 +78,13 @@ extensions/
   b2b-moq/                            # Validation Function
   wholesale-storefront/               # Theme App Extension
 ```
+
+## 可选搭配（无依赖）
+
+- B2C 转化漏斗 → [Conversion Pulse](https://github.com/Alohamonde/conversion-pulse)
+- VIP / 积分（标签概念可对齐）→ [Loyalty Pulse](https://github.com/Alohamonde/loyalty-pulse)
+- 预售 / 到货 → [Preorder Pulse](https://github.com/Alohamonde/preorder-pulse)
+- 规格文案 / 售后 → [Commerce Ops](https://github.com/Alohamonde/commerce-ops)
 
 ## License
 
